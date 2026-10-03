@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free SERP Preview &amp; Meta Tag Generator - Google, Bing, Social | SERPNook</title>
+    <meta name="description" content="Free SERP preview and meta tag generator. See how your page looks on Google, Bing and social cards side by side before you publish. Character limits, truncation warnings, copyable tags. No signup, client-side.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://serpnook.vercel.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SERP Nook">
+    <meta property="og:title" content="SERP Nook - Free SERP Preview &amp; Meta Tag Generator">
+    <meta property="og:description" content="Preview how your page looks on Google, Bing and social cards. Free, no signup, works offline.">
+    <meta property="og:url" content="https://serpnook.vercel.app/">
+    <meta property="og:image" content="https://serpnook.vercel.app/icon.svg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="SERP Nook - Free SERP Preview &amp; Meta Tag Generator">
+    <meta name="twitter:description" content="Preview how your page looks on Google, Bing and social cards. Free, no signup.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d1117'/><rect x='18' y='22' width='64' height='10' rx='3' fill='%234285f4'/><rect x='18' y='40' width='46' height='7' rx='3' fill='%234a5568'/><rect x='18' y='52' width='64' height='5' rx='2' fill='%23374151'/><rect x='18' y='62' width='58' height='5' rx='2' fill='%23374151'/><rect x='18' y='72' width='34' height='5' rx='2' fill='%23374151'/></svg>">
+    <meta name="theme-color" content="#0d1117">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="753da090-5ac6-475f-9ab5-ca0be8eb1316"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "SERP Nook",
+      "url": "https://serpnook.vercel.app/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "SERP preview, meta tag generator, Google snippet preview, Bing preview, Open Graph preview, Twitter card preview, character counter"
+    }
+    </script>
+    <style>
+        :root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--text:#c9d1d9;--text2:#8b949e;--accent:#58a6ff;--accent2:#79b8ff;--success:#3fb950;--warning:#d29922;--error:#f85149;--border:#30363d;--shadow:rgba(0,0,0,.3);--radius:8px;--transition:.2s ease}
+        [data-theme=light]{--bg:#fff;--bg2:#f6f8fa;--bg3:#eaeef2;--text:#1f2328;--text2:#59636e;--accent:#0969da;--accent2:#0550ae;--success:#1a7f37;--warning:#9a6700;--error:#d1242f;--border:#d1d9e0;--shadow:rgba(0,0,0,.1)}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+        .header{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--bg2);border-bottom:1px solid var(--border);flex-shrink:0;gap:12px;flex-wrap:wrap}
+        .logo{margin:0;font-size:18px;font-weight:700}
+        .logo a{color:var(--text);text-decoration:none;display:flex;align-items:center;gap:8px}
+        .logo a span{color:var(--accent)}
+        .logo svg{width:22px;height:22px}
+        .header-actions{display:flex;gap:8px;align-items:center}
+        .btn{padding:8px 14px;border:1px solid var(--border);border-radius:10px;background:var(--bg3);color:var(--text);cursor:pointer;font-size:13px;font-weight:600;transition:all var(--transition);display:inline-flex;align-items:center;gap:7px;line-height:1.2}
+        .btn:hover{background:var(--border);border-color:var(--text2)}
+        .btn:active{transform:scale(.98)}
+        .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+        .btn svg{width:15px;height:15px;flex-shrink:0}
+        .btn-primary{background:linear-gradient(180deg,var(--accent2),var(--accent));color:#fff;border-color:transparent;box-shadow:0 2px 8px var(--shadow)}
+        .btn-primary:hover{background:linear-gradient(180deg,var(--accent),var(--accent));border-color:transparent;filter:brightness(1.08)}
+        .btn-sm{padding:6px 10px;font-size:12px;border-radius:8px}
+        .btn-sm svg{width:13px;height:13px}
+        .main{flex:1;max-width:1080px;width:100%;margin:0 auto;padding:20px;display:flex;flex-direction:column;gap:16px}
+        .panel{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px}
+        .field{margin-bottom:14px}
+        .field:last-child{margin-bottom:0}
+        .field-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;gap:8px}
+        .field-head label{font-size:12px;font-weight:600;color:var(--text2)}
+        .counter{font-family:'SF Mono','Fira Code','Consolas',monospace;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px;background:var(--bg3);color:var(--text2)}
+        .counter.warn{background:rgba(210,153,34,.15);color:var(--warning)}
+        .counter.bad{background:rgba(248,81,73,.15);color:var(--error)}
+        .counter.good{background:rgba(63,185,80,.15);color:var(--success)}
+        .field input[type=text]{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg3);color:var(--text);font-size:14px;outline:none;font-family:inherit}
+        .field input:focus{border-color:var(--accent)}
+        .field input.warn{border-color:var(--warning)}
+        .field input.bad{border-color:var(--error)}
+        .hint{font-size:11px;color:var(--text2);margin-top:4px}
+        .hint.warn{color:var(--warning)}
+        .hint.bad{color:var(--error)}
+        .btn-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+        .spacer{flex:1}
+        .previews{display:flex;flex-direction:column;gap:14px}
+        .preview-card{background:#fff;border-radius:10px;padding:16px 18px;color:#202124;font-family:Arial,Helvetica,sans-serif;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+        .preview-card.dark{background:#15202b;color:#e8eaed}
+        .pc-label{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+        .pc-url{font-size:13px;color:#202124;display:flex;align-items:center;gap:8px;margin-bottom:3px}
+        .preview-card.dark .pc-url{color:#bdc1c6}
+        .favicon{width:16px;height:16px;border-radius:3px;flex-shrink:0;background:#4285f4}
+        .pc-title{font-size:19px;line-height:1.3;color:#1a0dab;margin-bottom:3px}
+        .preview-card.dark .pc-title{color:#8ab4f8}
+        .pc-title.t2{font-size:18px;color:#0c569c}
+        .preview-card.dark .pc-title.t2{color:#99c3ff}
+        .pc-desc{font-size:13px;line-height:1.5;color:#4d5156}
+        .preview-card.dark .pc-desc{color:#bdc1c6}
+        .pc-img{width:100%;max-width:520px;border-radius:8px;margin-top:12px;border:1px solid rgba(0,0,0,.08)}
+        .pc-card{display:flex;gap:12px}
+        .pc-card .pc-text{flex:1;min-width:0}
+        .pc-tag{font-size:11px;color:#767676;text-transform:uppercase;margin-bottom:2px}
+        .og-box{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;max-width:520px}
+        .og-img{height:180px;background:linear-gradient(135deg,#1a2a6c,#b21f1f);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-family:-apple-system,sans-serif}
+        .og-body{padding:10px 12px;font-family:Arial,sans-serif}
+        .og-body .og-title{font-size:15px;font-weight:700;color:#1a0dab;margin-bottom:2px}
+        .og-body .og-desc{font-size:13px;color:#4d5156;line-height:1.4}
+        .tags-out{font-family:'SF Mono','Fira Code','Consolas',monospace;font-size:12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:12px;white-space:pre-wrap;word-break:break-all;margin-top:12px;line-height:1.7;color:var(--text)}
+        .status-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--bg2);border-top:1px solid var(--border);font-size:12px;color:var(--text2);gap:12px;flex-wrap:wrap}
+        .status-left,.status-right{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+        .status-bar a{color:var(--text2);text-decoration:none}
+        .status-bar a:hover{color:var(--accent)}
+        .toast-container{position:fixed;top:20px;right:20px;z-index:10000;display:flex;flex-direction:column;gap:8px}
+        .toast{padding:12px 16px;border-radius:var(--radius);color:#fff;font-size:14px;animation:slideIn .3s ease;box-shadow:0 4px 12px var(--shadow);max-width:350px}
+        .toast-success{background:var(--success)}
+        .toast-error{background:var(--error)}
+        .toast-info{background:var(--accent)}
+        @keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1)}}
+        dialog{background:var(--bg2);color:var(--text);border:1px solid var(--border);border-radius:12px;padding:24px;max-width:640px;width:calc(100vw - 40px);max-height:80vh;overflow:auto}
+        dialog::backdrop{background:rgba(0,0,0,.6)}
+        .dialog-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+        .dialog-head h2{font-size:18px;display:flex;align-items:center;gap:8px}
+        .dialog-head h2 svg{width:20px;height:20px;color:var(--accent)}
+        #aboutDialog h3{font-size:15px;margin:16px 0 8px}
+        #aboutDialog p,#aboutDialog li{font-size:14px;line-height:1.7}
+        #aboutDialog ul{padding-left:20px}
+        #aboutDialog details{margin-bottom:8px;border:1px solid var(--border);border-radius:8px;padding:8px 12px}
+        #aboutDialog summary{cursor:pointer;font-weight:600;font-size:14px}
+        ::-webkit-scrollbar{width:8px;height:8px}
+        ::-webkit-scrollbar-track{background:var(--bg)}
+        ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+        .ic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        @media(max-width:600px){.field-head{flex-wrap:wrap}}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo"><a href="#"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4" rx="1.5"/><rect x="3" y="11" width="12" height="2.5" rx="1.25"/><rect x="3" y="16" width="18" height="2.5" rx="1.25"/><rect x="3" y="21" width="9" height="2.5" rx="1.25"/></svg>SERP<span>Nook</span></a></h1>
+        <div class="header-actions">
+            <button class="btn btn-sm" id="aboutBtn" title="About SERP Nook"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>About</button>
+            <button class="btn btn-sm" id="themeToggle" title="Toggle theme"><svg class="ic" id="iconMoon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic hidden" id="iconSun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+        </div>
+    </header>
+    <main class="main">
+        <div class="panel">
+            <div class="field">
+                <div class="field-head"><label for="inUrl">Page URL</label></div>
+                <input type="text" id="inUrl" placeholder="https://example.com/blog/my-post" spellcheck="false">
+                <div class="hint" id="urlHint">Used for the breadcrumb and domain line in every preview</div>
+            </div>
+            <div class="field">
+                <div class="field-head"><label for="inTitle">Page title</label><span class="counter" id="cTitle">0 / 60</span></div>
+                <input type="text" id="inTitle" placeholder="My Page Title - Site Name" spellcheck="false">
+                <div class="hint" id="hTitle">Aim for 50-60 characters so nothing truncates</div>
+            </div>
+            <div class="field">
+                <div class="field-head"><label for="inDesc">Meta description</label><span class="counter" id="cDesc">0 / 160</span></div>
+                <input type="text" id="inDesc" placeholder="A short summary that sells the click." spellcheck="false">
+                <div class="hint" id="hDesc">Aim for 120-160 characters</div>
+            </div>
+            <div class="field">
+                <div class="field-head"><label for="inOgTitle">Social title (og:title)</label><span class="counter" id="cOgTitle">0 / 70</span></div>
+                <input type="text" id="inOgTitle" placeholder="Falls back to page title" spellcheck="false">
+                <div class="hint">Optional - social cards use different length limits than search</div>
+            </div>
+            <div class="field">
+                <div class="field-head"><label for="inOgDesc">Social description (og:description)</label><span class="counter" id="cOgDesc">0 / 200</span></div>
+                <input type="text" id="inOgDesc" placeholder="Falls back to meta description" spellcheck="false">
+                <div class="hint">Optional</div>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-primary" id="copyHtmlBtn"><svg class="ic" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy HTML tags</button>
+                <button class="btn" id="copyTagsBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>Copy as plain text</button>
+                <button class="btn" id="sampleBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Sample</button>
+                <button class="btn" id="clearBtn"><svg class="ic" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Clear</button>
+            </div>
+            <div class="tags-out" id="tagsOut"></div>
+        </div>
+        <div class="previews" id="previews"></div>
+    </main>
+    <footer class="status-bar">
+        <div class="status-left"><span>Simulated previews - no data leaves your browser</span></div>
+        <div class="status-right"><a href="https://github.com/glennree318-netizen/serpnook/issues/new?labels=bug" target="_blank" rel="noopener">Report bug</a><a href="https://github.com/glennree318-netizen/serpnook/issues/new?labels=enhancement" target="_blank" rel="noopener">Request feature</a><span>100% Client-Side</span><span>SERP Nook v1.0</span></div>
+    </footer>
+    <dialog id="aboutDialog">
+        <div class="dialog-head"><h2><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>About SERP Nook</h2><button class="btn btn-sm" id="aboutClose"><svg class="ic" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Close</button></div>
+        <p><strong>SERP Nook</strong> is a free <strong>meta tag generator and SERP preview tool</strong>. Paste your URL, title and description to see exactly how the page will render on Google, Bing and social cards - side by side, with truncation shown the way each engine does it. Character limits are checked as you type, and every tag is one click from your clipboard. No account, no tracking, works offline.</p>
+        <h3>Frequently asked questions</h3>
+        <details><summary>Does this pull live data from Google?</summary><p>No - and it can't, Google blocks automated SERP requests. Every SERP preview tool simulates the rendering, including this one. Your input never leaves the browser.</p></details>
+        <details><summary>Why does Google truncate my title?</summary><p>Google displays roughly 580 pixels of title, which is about 50-60 characters. Beyond that it cuts with an ellipsis. SERP Nook shows the pixel-limited cut rather than a flat character count.</p></details>
+        <details><summary>What's the difference between the social and search preview?</summary><p>Search results show a title plus description in a small block. Social cards (Facebook, Twitter/X, LinkedIn) use og:title and og:description with different limits, and can include an image. They need to be written separately - SERP Nook previews both.</p></details>
+        <details><summary>How do I report a bug?</summary><p>Use the <strong>Report bug</strong> and <strong>Request feature</strong> links in the footer.</p></details>
+    </dialog>
+    <div class="toast-container" id="toastContainer"></div>
+    <script>
+// === Helpers ===
+        const $ = id => document.getElementById(id);
+        function showToast(message, type = 'info') {
+            const container = $('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2500);
+        }
+        function copyText(t) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(t).catch(() => fallbackCopy(t));
+            } else fallbackCopy(t);
+        }
+        function fallbackCopy(t) {
+            const ta = document.createElement('textarea');
+            ta.value = t;
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+        }
+
+        // === Theme (SVG sun/moon swap - no emoji, renders everywhere) ===
+        function applyTheme(next) {
+            document.documentElement.setAttribute('data-theme', next);
+            $('iconMoon').classList.toggle('hidden', next === 'light');
+            $('iconSun').classList.toggle('hidden', next !== 'light');
+            localStorage.setItem('serpnook_theme', next);
+        }
+        $('themeToggle').addEventListener('click', () => {
+            applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        });
+        applyTheme(localStorage.getItem('serpnook_theme') || 'dark');
+
+        // === Analytics events (shared Umami property) ===
+        function trackEvent(name) {
+            try { if (window.umami && typeof umami.track === 'function') umami.track(name); } catch (e) {}
+        }
+
+        // === URL parsing (breadcrumb + display host) ===
+        function parseUrl(raw) {
+            const value = (raw || '').trim();
+            if (!value) return { host: 'example.com', display: 'example.com > page', full: '' };
+            let u;
+            try {
+                u = new URL(value.indexOf('://') === -1 ? 'https://' + value : value);
+            } catch (e) {
+                return { host: value, display: value, full: value };
+            }
+            const segs = u.pathname.split('/').filter(Boolean);
+            let display = u.hostname.replace(/^www\./, '');
+            if (segs.length) {
+                display += ' > ';
+                display += segs.length > 1 ? segs[segs.length - 2] + ' > ' + segs[segs.length - 1] : segs[0];
+            }
+            return { host: u.hostname.replace(/^www\./, ''), display: display, full: u.href };
+        }
+
+        // === Truncation: engine-accurate, not flat character counts ===
+        // Google: title ~580px, description ~600px at desktop font sizes
+        // Bing:   ~23 char title, ~160 char description
+        function truncatePx(text, maxPx, charW) {
+            if (!text) return '';
+            if (text.length * charW <= maxPx) return text;
+            var len = Math.floor(maxPx / charW) - 1;
+            return len <= 0 ? '' : text.slice(0, len).trimEnd() + '...';
+        }
+        function truncateChars(text, max) {
+            if (!text) return '';
+            return text.length <= max ? text : text.slice(0, max - 3).trimEnd() + '...';
+        }
+
+        function values() {
+            const url = parseUrl($('inUrl').value);
+            const title = $('inTitle').value;
+            const desc = $('inDesc').value;
+            return {
+                url: url,
+                title: title,
+                desc: desc,
+                ogTitle: $('inOgTitle').value.trim() || title,
+                ogDesc: $('inOgDesc').value.trim() || desc
+            };
+        }
+
+        function escHtml(s) {
+            return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // === Counter + warning state ===
+        function setCounter(id, inputId, len, max, goodLo) {
+            const c = $(id);
+            const input = $(inputId);
+            c.textContent = len + ' / ' + max;
+            c.classList.remove('warn', 'bad', 'good');
+            input.classList.remove('warn', 'bad');
+            if (len === 0) return;
+            if (len > max) { c.classList.add('bad'); input.classList.add('bad'); }
+            else if (len >= max - 12) { c.classList.add('warn'); input.classList.add('warn'); }
+            else if (len >= goodLo) { c.classList.add('good'); }
+        }
+
+        function updateCounters() {
+            const t = $('inTitle').value, d = $('inDesc').value;
+            const ot = $('inOgTitle').value, od = $('inOgDesc').value;
+            setCounter('cTitle', 'inTitle', t.length, 60, 45);
+            setCounter('cDesc', 'inDesc', d.length, 160, 120);
+            setCounter('cOgTitle', 'inOgTitle', ot.length, 70, 40);
+            setCounter('cOgDesc', 'inOgDesc', od.length, 200, 140);
+            const h = $('hTitle');
+            h.textContent = t.length === 0 ? 'No title set - search engines will invent one from page content'
+                : t.length > 60 ? 'Too long: search engines will truncate this'
+                : t.length < 30 ? 'A bit short - you are leaving space unused'
+                : 'Good length';
+            h.className = 'hint' + (t.length > 60 ? ' bad' : t.length > 0 && t.length < 30 ? ' warn' : '');
+            const hd = $('hDesc');
+            hd.textContent = d.length === 0 ? 'No description - search engines will improvise (usually badly)'
+                : d.length > 160 ? 'Too long: truncated after ~160 characters'
+                : d.length < 70 ? 'Short: about 90 characters of space left to sell the click'
+                : 'Good length';
+            hd.className = 'hint' + (d.length > 160 ? ' bad' : d.length > 0 && d.length < 70 ? ' warn' : '');
+        }
+
+        // === Preview rendering ===
+        function render() {
+            updateCounters();
+            const v = values();
+            const gTitle = truncatePx(v.title, 580, 10.5);
+            const gDesc = truncatePx(v.desc, 600, 8.6);
+            const bTitle = truncateChars(v.title, 23);
+            const bDesc = truncateChars(v.desc, 160);
+            const ogTitle = truncateChars(v.ogTitle, 70);
+            const ogDesc = truncateChars(v.ogDesc, 200);
+
+            let html = '';
+
+            html += '<div class="preview-card">' +
+                '<div class="pc-label"><svg class="ic" style="width:13px;height:13px" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>Google result</div>' +
+                '<div class="pc-url"><span class="favicon"></span><span>' + escHtml(v.url.display) + '</span></div>' +
+                '<div class="pc-title">' + (escHtml(gTitle) || '<span style="color:#9aa0a6">No title</span>') + '</div>' +
+                '<div class="pc-desc">' + (escHtml(gDesc) || '<span style="color:#9aa0a6">No meta description</span>') + '</div>' +
+                '</div>';
+
+            html += '<div class="preview-card dark">' +
+                '<div class="pc-label" style="color:#8ab4f8"><svg class="ic" style="width:13px;height:13px" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>Bing result (23 char title limit)</div>' +
+                '<div class="pc-url"><span class="favicon" style="background:#0f7b6c"></span><span>' + escHtml(v.url.display) + '</span></div>' +
+                '<div class="pc-title t2">' + (escHtml(bTitle) || '<span style="color:#8ab4f8">No title</span>') + '</div>' +
+                '<div class="pc-desc">' + (escHtml(bDesc) || '<span style="color:#8ab4f8">No meta description</span>') + '</div>' +
+                '</div>';
+
+            html += '<div class="og-box">' +
+                '<div class="og-img">' + (v.url.full ? escHtml(v.url.host) : '1200 x 630 preview image') + '</div>' +
+                '<div class="og-body">' +
+                '<div class="og-title">' + (escHtml(ogTitle) || '<span style="color:#9aa0a6">og:title</span>') + '</div>' +
+                '<div class="og-desc">' + (escHtml(ogDesc) || '<span style="color:#9aa0a6">og:description</span>') + '</div>' +
+                '<div class="pc-tag">' + escHtml(v.url.host.toUpperCase()) + '</div>' +
+                '</div></div>';
+
+            $('previews').innerHTML = html;
+            $('tagsOut').textContent = buildTags(v);
+        }
+
+        function escAttr(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+
+        function buildTags(v) {
+            const u = v.url.full || 'https://example.com/page';
+            return [
+                '<title>' + escHtml(v.title) + '</title>',
+                '<meta name="description" content="' + escAttr(v.desc) + '">',
+                '<link rel="canonical" href="' + escAttr(u) + '">',
+                '',
+                '<meta property="og:type" content="website">',
+                '<meta property="og:title" content="' + escAttr(v.ogTitle) + '">',
+                '<meta property="og:description" content="' + escAttr(v.ogDesc) + '">',
+                '<meta property="og:url" content="' + escAttr(u) + '">',
+                '<meta property="og:site_name" content="Your Site">',
+                '',
+                '<meta name="twitter:card" content="summary_large_image">',
+                '<meta name="twitter:title" content="' + escAttr(v.ogTitle) + '">',
+                '<meta name="twitter:description" content="' + escAttr(v.ogDesc) + '">'
+            ].join('\n');
+        }
+
+        ['inUrl', 'inTitle', 'inDesc', 'inOgTitle', 'inOgDesc'].forEach(function (id) {
+            $(id).addEventListener('input', render);
+        });
+
+        $('copyHtmlBtn').addEventListener('click', function () {
+            const v = values();
+            if (!v.title && !v.desc) { showToast('Nothing to copy yet', 'error'); return; }
+            copyText(buildTags(v));
+            trackEvent('action-copy-tags');
+            showToast('Meta tags copied to clipboard', 'success');
+        });
+
+        $('copyTagsBtn').addEventListener('click', function () {
+            const v = values();
+            if (!v.title && !v.desc) { showToast('Nothing to copy yet', 'error'); return; }
+            copyText('Title: ' + v.title + '\nDescription: ' + v.desc + '\nCanonical: ' + (v.url.full || ''));
+            showToast('Plain-text summary copied', 'success');
+        });
+
+        $('sampleBtn').addEventListener('click', function () {
+            $('inUrl').value = 'https://example.com/blog/how-to-compress-images-for-web';
+            $('inTitle').value = 'How to Compress Images for the Web Without Losing Quality';
+            $('inDesc').value = 'Compressing images is the single easiest way to speed up your site. Here is how file size, quality and formats interact - with practical settings you can copy.';
+            $('inOgTitle').value = 'Compress Images the Right Way';
+            $('inOgDesc').value = 'File size, quality and format - what actually matters, and the settings to use.';
+            trackEvent('action-sample');
+            render();
+        });
+
+        $('clearBtn').addEventListener('click', function () {
+            ['inUrl', 'inTitle', 'inDesc', 'inOgTitle', 'inOgDesc'].forEach(function (id) { $(id).value = ''; });
+            render();
+        });
+
+        // === About dialog ===
+        $('aboutBtn').addEventListener('click', function () { $('aboutDialog').showModal(); });
+        $('aboutClose').addEventListener('click', function () { $('aboutDialog').close(); });
+        $('aboutDialog').addEventListener('click', function (e) {
+            if (e.target === $('aboutDialog')) $('aboutDialog').close();
+        });
+
+        // === Init ===
+        render();
+        if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+            navigator.serviceWorker.register('sw.js').catch(function () {});
+        }
+    </script>
+</body>
+</html>
