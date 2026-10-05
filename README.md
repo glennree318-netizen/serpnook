@@ -2,7 +2,7 @@
 
 See how your page will render on Google, Bing and social cards - side by side,
 with truncation shown the way each engine actually cuts it.
-**100% client-side. No account. No tracking. Free forever.**
+**100% client-side. No account. No uploads. Free forever.**
 
 ## Features
 
@@ -15,6 +15,11 @@ with truncation shown the way each engine actually cuts it.
 ## Privacy
 
 Everything is simulated in the browser - no URL is ever fetched, no data leaves the device.
+
+The page loads a small cookieless analytics script (Umami) on the production
+hostname only, to count visits. It sets no cookies, builds no profile, and never
+sees the URLs you paste, because every preview is rendered locally. Load the page
+once and use it offline and nothing is sent at all.
 
 ## Run it
 
